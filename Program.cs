@@ -13,11 +13,7 @@ namespace techpoint.ozon
             numberTwo();
         }
 
-        static void numberTwo()
-        {
-
-        }
-
+        //Номер 1: Морской бой
         static void numberOne()
         {
             int a = int.Parse(Console.ReadLine());
@@ -59,6 +55,33 @@ namespace techpoint.ozon
                     return "NO";
             }
             return "YES";
+        }
+
+        //Номер 2: Проверка даты
+        static void numberTwo()
+        {
+            int a = int.Parse(Console.ReadLine());
+            int[,] array = new int[a, 3];
+            for (int i = 0; i < a; i++)
+            {
+                string[] words = Console.ReadLine().Split(' ');
+                array[i, 0] = int.Parse(words[0]);
+                array[i, 1] = int.Parse(words[1]);
+                array[i, 2] = int.Parse(words[2]);
+            }
+            for (int i = 0; i < a; i++)
+            {
+                try
+                {
+                    DateTime dateTime = new DateTime(array[i, 2], array[i, 1], array[i, 0]);
+                    Console.WriteLine("Yes");
+                }
+                catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine("No");
+                }
+            }
+
         }
     }
 }
