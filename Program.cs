@@ -10,8 +10,9 @@ namespace techpoint.ozon
     {
         static void Main(string[] args)
         {
-            numberTwo();
+            numberTree();
         }
+
 
         //Номер 1: Морской бой
         static void numberOne()
@@ -82,6 +83,49 @@ namespace techpoint.ozon
                 }
             }
 
+        }
+
+        //Номер 3: Автомобильные номера
+        static void numberTree()
+        {
+            int a = int.Parse(Console.ReadLine());
+            string[] array = new string[a];
+            for (int i = 0; i < a; i++)
+            {
+                array[i] = findNumber(Console.ReadLine());
+            }
+
+            for (int i = 0; i < a; i++)
+            {
+                Console.WriteLine(array[i]);
+            }
+        }
+        static string findNumber(string line)
+        {
+            StringBuilder newLine = new StringBuilder();
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (i + 4 <= line.Length && char.IsLetter(line[i]) && char.IsDigit(line[i + 1]))
+                {
+
+                    if (i + 5 <= line.Length && char.IsDigit(line[i + 2]) && char.IsLetter(line[i + 3]) && char.IsLetter(line[i + 4]))
+                    {
+                        newLine.Append(line[i].ToString() + line[i + 1].ToString() + line[i + 2].ToString() + line[i + 3].ToString() + line[i + 4].ToString() + " ");
+                        i = i + 4;
+                    }
+                    else if (char.IsLetter(line[i + 2]) && char.IsLetter(line[i + 3]))
+                    {
+                        newLine.Append(line[i].ToString() + line[i + 1].ToString() + line[i + 2].ToString() + line[i + 3].ToString() + " ");
+                        i = i + 3;
+                    }
+                    else
+                        return "-";
+                }
+                else
+                    return "-";
+            }
+
+            return newLine.ToString();
         }
     }
 }
