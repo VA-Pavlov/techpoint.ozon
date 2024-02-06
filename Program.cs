@@ -10,7 +10,7 @@ namespace techpoint.ozon
     {
         static void Main(string[] args)
         {
-            numberTree();
+            
         }
 
 
@@ -127,5 +127,36 @@ namespace techpoint.ozon
 
             return newLine.ToString();
         }
-    }
+
+
+
+        //Номер 4: Битва за кондиционер
+        static void numberFour()
+        {
+            int countTests = int.Parse(Console.ReadLine());
+            int[][] ansvres = new int[countTests][];
+            for (int q = 0; q < countTests; q++)
+            {
+                int valueArrays = int.Parse(Console.ReadLine());
+                int[] values = new int[valueArrays];
+                int leftValue = 15;
+                int rightValue = 30;
+                for (int i = 0; i < valueArrays; i++)
+                {
+                    string[] words = Console.ReadLine().Split();
+                    if (words[0].Equals("<=")) rightValue = int.Parse(words[1]) < rightValue ? int.Parse(words[1]) : rightValue;
+                    if (words[0].Equals(">=")) leftValue = int.Parse(words[1]) > leftValue ? int.Parse(words[1]) : leftValue;
+                    values[i] = leftValue <= rightValue ? leftValue : -1;
+                }
+                ansvres[q] = values;
+            }
+            for (int i = 0; i < ansvres.Length; i++)
+            {
+                for (int q = 0; q < ansvres[i].Length; q++)
+                {
+                    Console.WriteLine(ansvres[i][q]);
+                }
+                Console.WriteLine();
+            }
+        }
 }
